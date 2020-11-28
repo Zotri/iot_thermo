@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/FirstFragment"
-            android:name="com.example.thermalapp.FirstFragment"
+            android:name="com.example.thermalapp.ConnectivityCheck"
             android:label="@string/first_fragment_label"
             tools:layout="@layout/fragment_first">
 
@@ -29,4 +29,6 @@
                 android:name="myArg"
                 app:argType="string"/>
     </fragment>
+    <activity android:id="@+id/mainActivity" android:name="com.example.thermalapp.MainActivity"
+              android:label="activity_main" tools:layout="@layout/activity_main"/>
 </navigation>
