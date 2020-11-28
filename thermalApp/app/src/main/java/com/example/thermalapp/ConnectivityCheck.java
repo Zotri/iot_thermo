@@ -1,10 +1,17 @@
 package com.example.thermalapp;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
+import android.os.Build;
+import android.util.Log;
+import androidx.annotation.IntRange;
+import androidx.annotation.RequiresApi;
 
 public class ConnectivityCheck extends BroadcastReceiver {
 
@@ -27,6 +34,30 @@ public class ConnectivityCheck extends BroadcastReceiver {
         }
 
     }
+
+    /**
+     * check manually for the connection
+     * @return
+     */
+    public static boolean isConnected() {
+        final ConnectivityManager cm = (ConnectivityManager) ConnectivityCheckApplication
+                                            .getInstance()
+                                            .getApplicationContext()
+                                            .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (cm != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                NetworkCapabilities capabilities = cm.getNetworkCapabilities(cm.getActiveNetwork());
+                return capabilities != null && (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR));
+            } else {
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                return activeNetwork != null && activeNetwork.isConnected();
+            }
+        }
+
+        return false;
+    }
+
 
     /**
      * interface returns boolean value onNetworkConnectionChanged

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".OfflineActivity"
+        android:background="#01579B">
+
+    <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true">
+
+        <ImageView
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/wifi_off"
+                android:layout_width="160dp"
+                android:layout_height="150dp"/>
+        <TextView
+                android:text="Your mobile is offline"
+                android:fontFamily="serif-monospace"
+                android:padding="16dp"
+                android:textColor="#fff"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="10pt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:fontFamily="serif-monospace"
+                android:textColor="#fff"
+                android:text="Check your internet connection and try again"
+                android:padding="5dp"
+                android:textSize="8pt"/>
+        <Button
+                android:id="@+id/btn_off"
+                android:drawableStart="@drawable/refresh"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:textStyle="bold"
+                android:paddingTop="20dp"
+                android:textSize="8pt"
+                android:paddingBottom="20dp"
+                android:textColor="#009688"
+                android:text="TRY AGAIN"
+                android:paddingStart="50dp"
+                android:drawablePadding="-50dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center|bottom"
+                android:background="@drawable/btn_network"
+        />
+    </LinearLayout>
+
+</RelativeLayout>
