@@ -22,7 +22,7 @@ public class OfflineActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(OfflineActivity.this, MainActivity.class);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
     }

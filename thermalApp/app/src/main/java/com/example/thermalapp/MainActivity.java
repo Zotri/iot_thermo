@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements ConnectivityCheck
     }
 
     private void changeActivityToMqttConnection() {
+        Intent intent = new Intent(this, StartMqttActivity.class);
+        startActivity(intent);
     }
 
     private void changeActivity() {
