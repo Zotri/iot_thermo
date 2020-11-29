@@ -36,11 +36,8 @@ public class MainActivity extends AppCompatActivity implements ConnectivityCheck
     private void checkConnectivityNetwork() {
         boolean isConnected = ConnectivityCheck.isConnected();
         
-        if(isConnected){
         showSnackBar(isConnected);
         changeActivityToMqttConnection();
-        }
-
 
         if(!isConnected){
             changeActivity();

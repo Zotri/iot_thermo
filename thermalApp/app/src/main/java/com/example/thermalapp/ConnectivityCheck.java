@@ -1,17 +1,12 @@
 package com.example.thermalapp;
 
-import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
-import android.util.Log;
-import androidx.annotation.IntRange;
-import androidx.annotation.RequiresApi;
 
 public class ConnectivityCheck extends BroadcastReceiver {
 
@@ -19,7 +14,6 @@ public class ConnectivityCheck extends BroadcastReceiver {
 
     public ConnectivityCheck() {
         super();
-
     }
 
     @Override
