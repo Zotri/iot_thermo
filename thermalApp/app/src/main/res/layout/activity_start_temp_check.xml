@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        android:id="@+id/temp_check_start"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".StartMqttActivity"
+        android:background="#01579B"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_alignParentTop="true">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif-monospace"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:textSize="12pt"
+            android:paddingTop="20dp"
+            android:layout_margin="10pt"
+            android:gravity="center_horizontal"
+            android:text="Current Temperature"
+            tools:ignore="HardcodedText"/>
+
+    <TextView
+            android:id="@+id/text_temp_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#57827717"
+            android:textSize="12pt"
+            android:layout_margin="10pt"
+            android:textColor="#AF0909"
+            android:fontFamily="serif-monospace"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10pt"
+            android:textColor="#fff"
+            android:fontFamily="serif-monospace"
+            android:text="Slide right or left to set a temperature value"
+            tools:ignore="HardcodedText"/>
+        <TextView
+                android:id="@+id/text_seek_bar"
+                android:layout_margin="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <SeekBar
+                android:id="@+id/seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="15"
+                android:max="28"
+        />
+        <SeekBar
+                android:theme="@style/MySeekBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="@+id/textView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"/>
+    </LinearLayout>
+</RelativeLayout>

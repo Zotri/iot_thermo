@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,21 +24,28 @@ import java.nio.ByteOrder;
 
 public class StartMqttActivity extends AppCompatActivity {
 
-    private ImageButton imgBtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_mqtt);
 
-        imgBtn = findViewById(R.id.btn_info);
+        ImageButton imgBtn = findViewById(R.id.btn_info);
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StartMqttActivity.this, MainActivity.class);
+            Intent intent = new Intent(StartMqttActivity.this, MainActivity.class);
+            startActivity(intent);
+            showToast();
+            //finish();
+            }
+        });
+
+        Button checkTempBtn = findViewById(R.id.btn_temp_check);
+        checkTempBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StartMqttActivity.this, StartTempCheckActivity.class);
                 startActivity(intent);
-                showToast();
-                finish();
             }
         });
     }
