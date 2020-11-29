@@ -1,10 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
+        android:id="@+id/mqtt_start"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".StartMqttActivity">
+        tools:context=".StartMqttActivity"
+        android:background="#01579B">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+        <ImageView
+                android:layout_gravity="center|top"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/wifi_on"
+                android:layout_width="160dp"
+                android:layout_height="150dp"
+                tools:ignore="ContentDescription"/>
+        <TextView
+                android:text="Your Phone is Connected"
+                android:fontFamily="serif-monospace"
+                android:padding="16dp"
+                android:textColor="#fff"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="10pt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText"/>
+        <TextView
+                android:id="@+id/text_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif-monospace"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:text="Connection details"
+                android:padding="5dp"
+                android:textSize="8pt"
+                tools:ignore="HardcodedText"/>
+        <ImageButton
+                android:id="@+id/btn_info"
+                android:src="@drawable/info"
+                android:paddingStart="250dp"
+                android:layout_marginTop="-27.5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_gravity="center"
+                tools:ignore="ContentDescription,RtlSymmetry"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
