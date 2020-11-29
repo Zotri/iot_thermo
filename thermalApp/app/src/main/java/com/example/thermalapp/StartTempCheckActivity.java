@@ -19,7 +19,7 @@ public class StartTempCheckActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start_temp_check);
 
         SeekBar seekBar = findViewById(R.id.seek_bar);
-        seekBar.setProgress(14);
+        seekBar.setProgress(20);
         seekBar.incrementProgressBy(1);
         seekBar.setMax(28);
         seekBar.setOnSeekBarChangeListener(seekBarChangeListener);
@@ -27,7 +27,7 @@ public class StartTempCheckActivity extends AppCompatActivity {
         int progress = seekBar.getProgress();
         seekBarText = findViewById(R.id.text_seek_bar);
 
-        seekBarText.setText("Progress: " + progress);
+        seekBarText.setText(MessageFormat.format("Slide to set temperature degree: {0}°", progress));
     }
 
     SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
@@ -36,7 +36,7 @@ public class StartTempCheckActivity extends AppCompatActivity {
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             if (progress >= minimumVal) {
                 seekBar.setProgress(progress);
-            seekBarText.setText(MessageFormat.format("Temperature Value: {0}", progress));
+            seekBarText.setText(MessageFormat.format("Temperature Value: {0}°", progress));
             } else {
                 seekBar.setProgress(minimumVal);
             }
