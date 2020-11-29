@@ -22,7 +22,9 @@ allprojects {
         google()
         jcenter()
         //paste here maven repo
-        maven { url "https://jitpack.io"}
+        maven {
+            url "https://repo.eclipse.org/content/repositories/paho-releases/"
+        }
         
     }
 }

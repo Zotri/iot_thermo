@@ -50,7 +50,6 @@ public class StartMqttActivity extends AppCompatActivity {
         });
     }
 
-
     public void showToast(){
         LayoutInflater layoutInflater = getLayoutInflater();
         View layout = layoutInflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_root));
@@ -94,5 +93,50 @@ public class StartMqttActivity extends AppCompatActivity {
 
         return ipAddressString;
     }
+}
+
+    /*
+    public void testConnection(View view) {
+        String clientId = "android" +  MqttClient.generateClientId();
+        mqttAndroidClient = new MqttAndroidClient(this.getApplicationContext(), HOSTBROKER, clientId);
+
+        MqttConnectOptions options = new MqttConnectOptions();
+        options.setAutomaticReconnect(true);
+        options.setCleanSession(true);
+        options.setConnectionTimeout(10);
+        options.setUserName("USRNAME");
+        options.setPassword("PASSWORD".toCharArray());
+
+        try {
+            mqttAndroidClient.connect(options);
+            IMqttToken token = mqttAndroidClient.connect(options);
+            token.setActionCallback(new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                    // We are connected
+                    Toast.makeText(getBaseContext(), "Client is connected", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    // Something went wrong e.g. connection timeout or firewall problems
+                    Toast.makeText(getBaseContext(), "Something went wrong MQTT connection lost", Toast.LENGTH_LONG).show();
+
+                }
+            });
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+
+        String topic = TOPIC;
+        String msg = "Sensor1";
+
+        try{
+            mqttAndroidClient.publish(topic, msg.getBytes(), 0, false);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }
+*/
