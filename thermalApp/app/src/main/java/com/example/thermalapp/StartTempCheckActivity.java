@@ -65,7 +65,7 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
         topicSelected = (TextView) findViewById(R.id.text_topic_value);
 
         mqttAndroidClient = new MqttAndroidClient(this.getApplicationContext(), BROKER_URL, CLIENT_ID);
-        byte[] payload = "logging out from topic...".getBytes();
+        byte[] payload = "Android logs out from broker...".getBytes();
         MqttConnectOptions options = new MqttConnectOptions();
         options.setAutomaticReconnect(true);
         options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1);
