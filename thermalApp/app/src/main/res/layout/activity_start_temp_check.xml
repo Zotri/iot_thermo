@@ -12,19 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:layout_alignParentTop="true">
     <Button
             android:id="@+id/btn_mqtt_connect"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Check Broker Status"
             android:textSize="5pt"
-            android:padding="6dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="4dp"
             android:textColor="#009688"
-            android:layout_gravity="top|end"
+            android:layout_gravity="top"
             android:background="@drawable/btn_network"
             tools:ignore="HardcodedText,RtlSymmetry"/>
     <TextView
@@ -53,7 +51,7 @@
             android:id="@+id/text_temp_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="26pt"
+            android:textSize="80sp"
             android:textStyle="bold"
             android:layout_margin="10pt"
             android:textColor="#fff"

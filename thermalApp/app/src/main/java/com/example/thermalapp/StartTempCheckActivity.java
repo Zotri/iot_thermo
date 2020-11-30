@@ -149,20 +149,13 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
     };
 
     @Override
-    public void connectComplete(boolean reconnect, String serverURI) {
-
-    }
-
-    @Override
     public void connectionLost(Throwable cause) {
-        Log.d("MQTT", "connectionLost");
+
     }
 
     @Override
     public void messageArrived(String topic, MqttMessage message) throws Exception {
-        String payload = new String(message.getPayload());
-        dataReceived.setText(message.toString());
-        Log.d("MQTT", "Received > " + topic + " > " + payload);
+
     }
 
     @Override
@@ -193,6 +186,11 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
         } catch (MqttException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void connectComplete(boolean reconnect, String serverURI) {
+
     }
     //TODO implement publish method
     //TODO manually trigger value of current temperature value
