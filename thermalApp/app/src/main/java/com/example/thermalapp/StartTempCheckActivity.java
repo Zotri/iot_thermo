@@ -193,5 +193,6 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
 
     }
     //TODO implement publish method
+    // publish to subsribe with topic tele/%topic%/STATUS to retrieve a payload with least info as json
     //TODO manually trigger value of current temperature value
 }
