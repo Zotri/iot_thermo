@@ -51,25 +51,12 @@ public class StartMqttActivity extends AppCompatActivity {
     }
 
     public void showToast(){
-        LayoutInflater layoutInflater = getLayoutInflater();
-        View layout = layoutInflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_root));
-
         WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         String ipAddr = wifiIpAddress(getApplicationContext());
         String ssid = wifiInfo.getSSID();
 
-        TextView textView = layout.findViewById(R.id.toast_txt);
-        textView.setText("Ip Address: " +  ipAddr + "\n" + "Wifi SSID: " + ssid);
-
-        textView.setTextColor(Color.WHITE);
-
-        Toast toast = new Toast(getApplicationContext());
-        textView.setGravity(Gravity.CENTER);
-        toast.setDuration(500);
-        toast.setView(layout);
-
-        toast.show();
+        Toast.makeText(getBaseContext(), "Ip Address: " +  ipAddr + "\n" + "Wifi SSID: " + ssid, Toast.LENGTH_LONG).show();
     }
 
     private String wifiIpAddress(Context applicationContext) {

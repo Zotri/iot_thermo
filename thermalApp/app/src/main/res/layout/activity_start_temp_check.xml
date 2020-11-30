@@ -9,25 +9,34 @@
         android:background="#01579B"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_alignParentTop="true">
-        <Button
-                android:id="@+id/btn_mqtt_connect"
-                android:layout_width="260dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:text="Check Broker Status"
-                android:textSize="8pt"
-                android:textColor="#009688"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center|bottom"
-                android:background="@drawable/btn_network"
-                tools:ignore="HardcodedText,RtlSymmetry"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentTop="true">
+    <Button
+            android:id="@+id/btn_mqtt_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check Broker Status"
+            android:textSize="5pt"
+            android:padding="6dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="4dp"
+            android:textColor="#009688"
+            android:layout_gravity="top|end"
+            android:background="@drawable/btn_network"
+            tools:ignore="HardcodedText,RtlSymmetry"/>
+    <TextView
+            android:id="@+id/text_topic_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#57827717"
+            android:layout_gravity="end"
+            android:textSize="6pt"
+            android:layout_margin="10pt"
+            android:textColor="#AF0909"
+            android:fontFamily="serif-monospace"/>
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,8 +44,7 @@
             android:textStyle="bold"
             android:textColor="#fff"
             android:textSize="12pt"
-            android:paddingTop="20dp"
-            android:layout_margin="10pt"
+            android:layout_margin="1pt"
             android:gravity="center_horizontal"
             android:text="Current Temperature"
             tools:ignore="HardcodedText"/>
@@ -45,11 +53,11 @@
             android:id="@+id/text_temp_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#57827717"
-            android:textSize="12pt"
+            android:textSize="26pt"
+            android:textStyle="bold"
             android:layout_margin="10pt"
-            android:textColor="#AF0909"
-            android:fontFamily="serif-monospace"/>
+            android:textColor="#fff"
+            android:fontFamily="monospace"/>
 
     <TextView
             android:layout_width="match_parent"
