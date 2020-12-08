@@ -17,13 +17,16 @@
         android:layout_alignParentTop="true">
     <Button
             android:id="@+id/btn_mqtt_connect"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Check Broker Status"
-            android:textSize="5pt"
-            android:textColor="#009688"
-            android:layout_gravity="top"
-            android:background="@drawable/btn_network"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:text="Status"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="serif-monospace"
+            android:textColor="#000"
+            android:padding="21dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@drawable/round_btn_network"
             tools:ignore="HardcodedText,RtlSymmetry"/>
     <TextView
             android:id="@+id/text_topic_value"
