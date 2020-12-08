@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity implements ConnectivityCheck
 
     private void checkConnectivityNetwork() {
         boolean isConnected = ConnectivityCheck.isConnected();
-        
+
         showSnackBar(isConnected);
         changeActivityToMqttConnection();
 
-        if(!isConnected){
+        if (!isConnected) {
             changeActivity();
         }
     }
@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity implements ConnectivityCheck
     private void showSnackBar(boolean isConnected) {
         String msg;
         int color;
-        if(isConnected){
+        if (isConnected) {
             msg = "Your Phone is Connected";
             color = Color.GREEN;
-        }else {
+        } else {
             msg = "Your Phone is NOT Connected";
             color = Color.RED;
         }
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityCheck
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {
 
-        if(!isConnected){
+        if (!isConnected) {
             changeActivity();
         }
         showSnackBar(isConnected);

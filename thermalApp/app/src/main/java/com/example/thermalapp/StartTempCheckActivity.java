@@ -32,10 +32,21 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
     TextView seekBarText;
     int minimumVal = 14;
 
+    float discrete = 0;
+    float start = 0;
+    float end = 100;
+    float start_pos = 0;
+    int start_position = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_temp_check);
+
+        start = 14;      //you need to give starting value of SeekBar
+        end = 30;         //you need to give end value of SeekBar
+        start_pos = 16;    //you need to give starting position value of SeekBar
+
         SeekBar seekBar = findViewById(R.id.seek_bar);
         seekBar.setProgress(20);
         seekBar.incrementProgressBy(1);
@@ -58,6 +69,36 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
                 //finish();
             }
         });
+
+        start_position = (int) (((start_pos - start) / (end - start)) * 100);
+        discrete = start_pos;
+        SeekBar seek = (SeekBar) findViewById(R.id.seek_bar);
+        seek.setProgress(start_position);
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+                Toast.makeText(getBaseContext(), "discrete = " + String.valueOf(discrete), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // TODO Auto-generated method stub
+                // To convert it as discrete value
+                float temp = progress;
+                float dis = end - start;
+                discrete = (start + ((temp / 100) * dis));
+                seekBarText.setText(MessageFormat.format("Temperature Value: {0}°", progress));
+            }
+        });
+
+
     }
 
     private void startMqtt() {
@@ -69,7 +110,7 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
         MqttConnectOptions options = new MqttConnectOptions();
         options.setAutomaticReconnect(true);
         options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1);
-        options.setWill(TOPIC, payload,0,false );
+        options.setWill(TOPIC, payload, 0, false);
         options.setUserName(USERNAME);
         options.setPassword(PASSWORD.toCharArray());
 
@@ -85,6 +126,7 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
                         public void connectionLost(Throwable cause) {
 
                         }
+
                         @Override
                         public void messageArrived(String topic, MqttMessage message) throws Exception {
                             String payloadToJson = new JSONObject(new String(String.valueOf(message))).toString();
@@ -93,13 +135,14 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
 
                             JSONObject json = new JSONObject(payloadToJson);
 
-                            JSONObject location = json.getJSONObject( "DS18B20" );
+                            JSONObject location = json.getJSONObject("DS18B20");
                             String temp = location.getString("Temperature");
 
                             Log.d("temperature", temp + "°");
                             dataReceived.setText(temp + "°");
 
                         }
+
                         @Override
                         public void deliveryComplete(IMqttDeliveryToken token) {
 
@@ -128,7 +171,7 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             if (progress >= minimumVal) {
                 seekBar.setProgress(progress);
-            seekBarText.setText(MessageFormat.format("Temperature Value: {0}°", progress));
+                seekBarText.setText(MessageFormat.format("Temperature Value: {0}°", progress));
             } else {
                 seekBar.setProgress(minimumVal);
             }
@@ -163,7 +206,7 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
         Log.d("MQTT", "deliveryComplete");
     }
 
-    public void subscribe(MqttAndroidClient client , String topic) {
+    public void subscribe(MqttAndroidClient client, String topic) {
         int qos = 1;
         try {
             IMqttToken subToken = client.subscribe(topic, qos);
@@ -172,7 +215,7 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
                     // The message was published
-                    Log.w("Mqtt","Subscribed!");
+                    Log.w("Mqtt", "Subscribed!");
                     topicSelected.setText("Topic selected!");
                 }
 

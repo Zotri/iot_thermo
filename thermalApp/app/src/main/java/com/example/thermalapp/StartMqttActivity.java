@@ -33,10 +33,10 @@ public class StartMqttActivity extends AppCompatActivity {
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            Intent intent = new Intent(StartMqttActivity.this, MainActivity.class);
-            startActivity(intent);
-            showToast();
-            //finish();
+                Intent intent = new Intent(StartMqttActivity.this, MainActivity.class);
+                startActivity(intent);
+                showToast();
+                //finish();
             }
         });
 
@@ -50,13 +50,13 @@ public class StartMqttActivity extends AppCompatActivity {
         });
     }
 
-    public void showToast(){
+    public void showToast() {
         WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         String ipAddr = wifiIpAddress(getApplicationContext());
         String ssid = wifiInfo.getSSID();
 
-        Toast.makeText(getBaseContext(), "Ip Address: " +  ipAddr + "\n" + "Wifi SSID: " + ssid, Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Ip Address: " + ipAddr + "\n" + "Wifi SSID: " + ssid, Toast.LENGTH_LONG).show();
     }
 
     private String wifiIpAddress(Context applicationContext) {
@@ -81,49 +81,3 @@ public class StartMqttActivity extends AppCompatActivity {
         return ipAddressString;
     }
 }
-
-    /*
-    public void testConnection(View view) {
-        String clientId = "android" +  MqttClient.generateClientId();
-        mqttAndroidClient = new MqttAndroidClient(this.getApplicationContext(), HOSTBROKER, clientId);
-
-        MqttConnectOptions options = new MqttConnectOptions();
-        options.setAutomaticReconnect(true);
-        options.setCleanSession(true);
-        options.setConnectionTimeout(10);
-        options.setUserName("USRNAME");
-        options.setPassword("PASSWORD".toCharArray());
-
-        try {
-            mqttAndroidClient.connect(options);
-            IMqttToken token = mqttAndroidClient.connect(options);
-            token.setActionCallback(new IMqttActionListener() {
-                @Override
-                public void onSuccess(IMqttToken asyncActionToken) {
-                    // We are connected
-                    Toast.makeText(getBaseContext(), "Client is connected", Toast.LENGTH_LONG).show();
-                }
-
-                @Override
-                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    // Something went wrong e.g. connection timeout or firewall problems
-                    Toast.makeText(getBaseContext(), "Something went wrong MQTT connection lost", Toast.LENGTH_LONG).show();
-
-                }
-            });
-        } catch (MqttException e) {
-            e.printStackTrace();
-        }
-
-        String topic = TOPIC;
-        String msg = "Sensor1";
-
-        try{
-            mqttAndroidClient.publish(topic, msg.getBytes(), 0, false);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-}
-*/

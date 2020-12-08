@@ -23,7 +23,7 @@ public class ConnectivityCheck extends BroadcastReceiver {
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
-        if(connectivityReceiveListener!=null){
+        if (connectivityReceiveListener != null) {
             connectivityReceiveListener.onNetworkConnectionChanged(isConnected);
         }
 
@@ -31,13 +31,14 @@ public class ConnectivityCheck extends BroadcastReceiver {
 
     /**
      * check manually for the connection
+     *
      * @return
      */
     public static boolean isConnected() {
         final ConnectivityManager cm = (ConnectivityManager) ConnectivityCheckApplication
-                                            .getInstance()
-                                            .getApplicationContext()
-                                            .getSystemService(Context.CONNECTIVITY_SERVICE);
+                .getInstance()
+                .getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (cm != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -52,11 +53,10 @@ public class ConnectivityCheck extends BroadcastReceiver {
         return false;
     }
 
-
     /**
      * interface returns boolean value onNetworkConnectionChanged
      */
-    public interface ConnectivityReceiveListener{
+    public interface ConnectivityReceiveListener {
         void onNetworkConnectionChanged(boolean isConnected);
     }
 }
