@@ -2,18 +2,11 @@ package com.example.thermalapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -56,7 +49,7 @@ public class StartMqttActivity extends AppCompatActivity {
         String ipAddr = wifiIpAddress(getApplicationContext());
         String ssid = wifiInfo.getSSID();
 
-        Toast.makeText(getBaseContext(), "Ip Address: " + ipAddr + "\n" + "Wifi SSID: " + ssid, Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Ip Address: " + ipAddr + "\n" + "Wifi SSID: " + ssid, Toast.LENGTH_SHORT).show();
     }
 
     private String wifiIpAddress(Context applicationContext) {

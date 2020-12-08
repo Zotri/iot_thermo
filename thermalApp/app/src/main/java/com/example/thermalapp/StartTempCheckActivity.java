@@ -1,32 +1,50 @@
 package com.example.thermalapp;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.NumberPicker;
+import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.*;
 import org.json.JSONObject;
 
-public class StartTempCheckActivity extends AppCompatActivity implements MqttCallbackExtended {
-    public MqttAndroidClient mqttAndroidClient;
-
+public class StartTempCheckActivity extends AppCompatActivity implements MqttCallbackExtended, NumberPicker.OnValueChangeListener {
     final String BROKER_URL = "tcp://192.168.1.113:1883";
     final String TOPIC = "tele/temp/SENSOR";
     final String USERNAME = "motri";
     final String PASSWORD = "motri";
     final String CLIENT_ID = "android " + MqttClient.generateClientId();
-
+    public MqttAndroidClient mqttAndroidClient;
     TextView dataReceived;
     TextView topicSelected;
     Button connectMqttBtn;
+    TextView tvShowNumberPicker;
+    NumberPickerWithXml numberPicker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_temp_check);
 
+        tvShowNumberPicker = findViewById(R.id.show_number_picker_text);
+        numberPicker = findViewById(R.id.temp_degree_picker);
+
+        numberPicker.setOnValueChangedListener(this);
+        //numberPicker.setFocusedByDefault(true);
+
+        /*
+        numberPicker.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                //publish();
+            }
+        });
+*/
         connectMqttBtn = findViewById(R.id.btn_mqtt_connect);
         connectMqttBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,9 +57,14 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
         });
     }
 
+    private void publish() {
+        int settedValue = numberPicker.getValue();
+
+    }
+
     private void startMqtt() {
-        dataReceived = (TextView) findViewById(R.id.text_temp_value);
-        topicSelected = (TextView) findViewById(R.id.text_topic_value);
+        dataReceived = findViewById(R.id.text_temp_value);
+        topicSelected = findViewById(R.id.text_topic_value);
 
         mqttAndroidClient = new MqttAndroidClient(this.getApplicationContext(), BROKER_URL, CLIENT_ID);
         byte[] payload = "Android logs out from broker...".getBytes();
@@ -67,7 +90,7 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
 
                         @Override
                         public void messageArrived(String topic, MqttMessage message) throws Exception {
-                            String payloadToJson = new JSONObject(new String(String.valueOf(message))).toString();
+                            String payloadToJson = new JSONObject(String.valueOf(message)).toString();
                             Log.d("temperature", payloadToJson);
 
 
@@ -77,7 +100,7 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
                             String temp = location.getString("Temperature");
 
                             Log.d("temperature", temp + "°");
-                            dataReceived.setText(temp + "°");
+                            dataReceived.setText(temp + "\u2103");
 
                         }
 
@@ -87,7 +110,7 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
                         }
                     });
                     // We are connected
-                    Toast.makeText(getBaseContext(), "Client is connected", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Client is connected", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -148,7 +171,12 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
     public void connectComplete(boolean reconnect, String serverURI) {
 
     }
+
+    @Override
+    public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+        Log.d("old", i + "°" + "new" + i1);
+        tvShowNumberPicker.setText(" \u2103 degree to set");
+    }
     //TODO implement publish method
-    // publish to subsribe with topic tele/%topic%/STATUS to retrieve a payload with least info as json
-    //TODO manually trigger value of current temperature value
+    // publish to subscribe with topic tele/%topic%/STATUS to retrieve a payload with least info as json
 }

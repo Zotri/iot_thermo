@@ -7,28 +7,28 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity" tools:ignore="LabelFor"
         android:background="#01579B">
-<LinearLayout
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true">
+    <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true">
 
-    <Button
-            android:id="@+id/btn"
-            android:layout_width="260dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:textSize="8pt"
-            android:textColor="#009688"
-            android:text="Check network status"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center|bottom"
-            android:background="@drawable/round_btn_network"
-    />
-</LinearLayout>
+        <Button
+                android:id="@+id/btn"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:textSize="8pt"
+                android:textColor="#009688"
+                android:text="Check network status"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center|bottom"
+                android:background="@drawable/btn_round_network"
+        />
+    </LinearLayout>
 
 
 </RelativeLayout>

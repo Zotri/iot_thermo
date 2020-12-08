@@ -12,22 +12,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:gravity="center"
             android:layout_alignParentTop="true">
         <Button
                 android:id="@+id/btn_mqtt_connect"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:text="Status"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:fontFamily="serif-monospace"
-                android:textColor="#000"
+                android:textSize="8pt"
+                android:textColor="#fff"
                 android:padding="21dp"
                 android:gravity="center_vertical|center_horizontal"
-                android:background="@drawable/round_btn_network"
+                android:background="@drawable/btn_round_network"
                 tools:ignore="HardcodedText,RtlSymmetry"/>
+
         <TextView
                 android:id="@+id/text_topic_value"
                 android:layout_width="wrap_content"
@@ -62,16 +61,51 @@
 
         <TextView
                 android:layout_width="match_parent"
+                android:paddingStart="2dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10pt"
+                android:layout_margin="1dp"
                 android:textColor="#fff"
-                android:fontFamily="serif-monospace"
-                android:text="Slide right or left to set a temperature value"
-                tools:ignore="HardcodedText"/>
-        <TextView
-                android:id="@+id/text_seek_bar"
+                android:fontFamily="monospace"
+                android:text="Slide up or down to pick a temperature degree"
+                tools:ignore="HardcodedText,RtlSymmetry"/>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:padding="5dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp">
+            <TextView
+                    android:id="@+id/show_number_picker_text"
+                    android:layout_toEndOf="@+id/temp_degree_picker"
+                    android:textSize="13sp"
+                    android:fontFamily="monospace"
+                    android:textColor="#fff"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            <com.example.thermalapp.NumberPickerWithXml
+                    app:maxValue="30"
+                    app:minValue="14"
+                    android:layout_marginEnd="10dp"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/temp_degree_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="180dp"/>
+        </RelativeLayout>
+        <Button
+                android:id="@+id/btn_set_temp"
+                android:paddingTop="20dp"
+                android:textColor="#fff"
+                android:textSize="8pt"
+                android:text="Temperature Set"
+                android:background="@drawable/btn_temperature_set"
+                android:paddingBottom="20dp"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                tools:ignore="HardcodedText"/>
     </LinearLayout>
 </RelativeLayout>
