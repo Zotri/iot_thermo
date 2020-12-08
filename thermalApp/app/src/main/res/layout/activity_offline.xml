@@ -59,7 +59,7 @@
                 android:drawablePadding="-50dp"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center|bottom"
-                android:background="@drawable/btn_round_network"
+                android:background="@drawable/btn_network_check"
                 tools:ignore="HardcodedText,RtlSymmetry"/>
     </LinearLayout>
 
