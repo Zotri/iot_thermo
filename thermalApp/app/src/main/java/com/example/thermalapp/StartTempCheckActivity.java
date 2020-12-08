@@ -7,14 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.*;
-import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 public class StartTempCheckActivity extends AppCompatActivity implements MqttCallbackExtended {
     public MqttAndroidClient mqttAndroidClient;
@@ -29,35 +22,10 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
     TextView topicSelected;
     Button connectMqttBtn;
 
-    TextView seekBarText;
-    int minimumVal = 14;
-
-    float discrete = 0;
-    float start = 0;
-    float end = 100;
-    float start_pos = 0;
-    int start_position = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_temp_check);
-
-        start = 14;      //you need to give starting value of SeekBar
-        end = 30;         //you need to give end value of SeekBar
-        start_pos = 16;    //you need to give starting position value of SeekBar
-
-        SeekBar seekBar = findViewById(R.id.seek_bar);
-        seekBar.setProgress(20);
-        seekBar.incrementProgressBy(1);
-        seekBar.setMax(28);
-        seekBar.setOnSeekBarChangeListener(seekBarChangeListener);
-
-        int progress = seekBar.getProgress();
-        seekBarText = findViewById(R.id.text_seek_bar);
-
-        seekBarText.setText(MessageFormat.format("Slide to set temperature degree: {0}°", progress));
-
 
         connectMqttBtn = findViewById(R.id.btn_mqtt_connect);
         connectMqttBtn.setOnClickListener(new View.OnClickListener() {
@@ -69,36 +37,6 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
                 //finish();
             }
         });
-
-        start_position = (int) (((start_pos - start) / (end - start)) * 100);
-        discrete = start_pos;
-        SeekBar seek = (SeekBar) findViewById(R.id.seek_bar);
-        seek.setProgress(start_position);
-        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-                Toast.makeText(getBaseContext(), "discrete = " + String.valueOf(discrete), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // TODO Auto-generated method stub
-                // To convert it as discrete value
-                float temp = progress;
-                float dis = end - start;
-                discrete = (start + ((temp / 100) * dis));
-                seekBarText.setText(MessageFormat.format("Temperature Value: {0}°", progress));
-            }
-        });
-
-
     }
 
     private void startMqtt() {
@@ -165,31 +103,6 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
 
     }
 
-    SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
-
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            if (progress >= minimumVal) {
-                seekBar.setProgress(progress);
-                seekBarText.setText(MessageFormat.format("Temperature Value: {0}°", progress));
-            } else {
-                seekBar.setProgress(minimumVal);
-            }
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-            // called when the user first touches the SeekBar
-            Toast.makeText(StartTempCheckActivity.this,
-                    "Set temperature value on", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-            Toast.makeText(StartTempCheckActivity.this,
-                    "Temperature is set", Toast.LENGTH_SHORT).show();
-        }
-    };
 
     @Override
     public void connectionLost(Throwable cause) {
