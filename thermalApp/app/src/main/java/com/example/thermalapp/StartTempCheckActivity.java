@@ -292,6 +292,4 @@ public class StartTempCheckActivity extends AppCompatActivity implements MqttCal
             Log.d("Error", "temp convert error");
         }
     }
-    //TODO implement publish method
-    // publish to subscribe with topic tele/%topic%/STATUS to retrieve a payload with least info as json
 }
