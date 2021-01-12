@@ -163,11 +163,11 @@
             android:textColor="#fff"
             android:background="@drawable/btn_mqtt_connect"
             android:text="SET"
+            android:drawableTop="@drawable/set_temp"
             android:layout_marginTop="5dp"
             android:padding="5dp"
             android:layout_marginBottom="10dp"
             android:layout_marginStart="284dp"
-            android:textSize="6pt"
             tools:ignore="HardcodedText,RtlSymmetry"
     />
 </RelativeLayout>
