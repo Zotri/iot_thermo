@@ -1,6 +1,6 @@
-# iot_thermo android Application 
+# iot_thermo Android Application 
 
-this app is a part of a scholar project on the FH-Campus Wien and deals with internet of things applications.
+this app is a part of a scholar project at the FH-Campus Wien and deals with internet of things applications.
 This repository contains the practical part of the project. 
 
 
@@ -13,11 +13,24 @@ register itself as a MQTT client/publisher.
 
 
 
-## Project technical tools
+## Project technical tools related to the APP
 
 - MQTT mosquitto. Home installation
-- D1 mini microcontroller + temp sensor
-- HiveMQ java library
+- D1 mini microcontroller + temp sensor + relay switch
+- HiveMQ java library + http/https connecter interface 
+
+## Restrictions
+
+- The application is set at minimum comlexity to connect and disconnect based on a static topic url. 
+- Few Error handlers.
+- Conversion from string to float or parsing values is done with error handling and will stop the application if it happens.
+- NumberPicker is a programmable java class imported to this project not done by me!
+
+## Future Release
+
+- Handling User insertions.
+- Make resiellient xml-layout (constraint or relative not combination between more than that)
+
 
 
 
